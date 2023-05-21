@@ -35,7 +35,7 @@ public class Menu2 {
                         System.out.print("ERROR! Debe ingresar solo numeros: ");
                         exp = sc.next();
                     }
-                    System.out.print(base+" elevado a "+exp+" es: ");
+                    System.out.print("\n"+base+" elevado a "+exp+" es: ");
                     System.out.println(calcularPotencia(Double.parseDouble(base), Integer.parseInt(exp)));
                     break;
                     
@@ -52,11 +52,17 @@ public class Menu2 {
                     
                 case 3:
                     System.out.print("Ingrese el ruc juridico a validar: ");
-                    RUC = sc.next();
+                    RUC = sc.nextLine();
+                    while(!RUC.matches("[0-9]{13}")){
+                        System.out.println("Debe ingresar unicamente 13 digitos");
+                        System.out.print("Ingrese nuevamente: ");
+                        RUC = sc.nextLine();
+                    }
+                    
                     if(validarRucJuridico(RUC)){
-                        System.out.println("EL RUC ES VALIDO");
+                        System.out.println("\nEL RUC ES VALIDO");
                     }else{
-                        System.out.println("EL RUC ES INVALIDO");
+                        System.out.println("\nEL RUC ES INVALIDO");
                     }
                     break;
             }
@@ -116,7 +122,6 @@ public class Menu2 {
         
         int[] arrayCoef = {4,3,2,7,6,5,4,3,2};
         char[] cedCad = s.toCharArray();
-        int digitos[] = new int [cedCad.length];
         int digitoVerificador = Integer.parseInt(String.valueOf(cedCad[9]));
         
         int resultado = 0;
@@ -135,6 +140,9 @@ public class Menu2 {
             return true;
         }
         
+        if(((11-residuo)==10)&&digitoVerificador==0){
+            return true;
+        }
         return false;
     }
     
